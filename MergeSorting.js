@@ -1,0 +1,50 @@
+function merge(arr1, arr2){
+    let i = 0
+    let j = 0
+    let result = [];
+
+
+    while (i < arr1.length && j < arr2.length) {
+        if(arr1[i] < arr2[j]){
+            result.push(arr1[i])
+            i++
+        }
+        else {
+            result.push(arr2[j])
+            j++
+        }
+    }
+
+
+    if (i < arr1.length) {
+        for (let r = i; r < arr1.length; r++){
+            result.push(arr1[r])
+        }
+    }
+    if (j < arr2.length){
+        for (let t = j; t < arr2.length; t++ ) {
+            result.push(arr2[t])
+        }
+    }
+    return result
+}
+
+function mergeSort (arr){
+    if (arr.length == 0) {
+        return []
+    }
+
+    if (arr.length == 1) {
+        return arr
+    }
+
+
+    const middleIdex = Math.round(arr.length / 2)
+    const arr1 = arr.slice(0, middleIdex)
+    const arr2 = arr.slice(middleIdex, arr.length)
+     return merge(mergeSort(arr1), mergeSort(arr2))
+}
+
+
+const sorted = mergeSort([15, 56, 58, 58, 49, -1897, 1859, 156, 0])
+console.log(sorted)
